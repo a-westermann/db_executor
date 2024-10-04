@@ -1,9 +1,6 @@
 from datetime import datetime
 import psycopg2
 import json
-import sys, os
-sys.path.insert(0, os.path.abspath('.'))
-print(sys.path)
 
 
 def execute(command: str):
@@ -28,5 +25,5 @@ if __name__ == '__main__':
             execute(sql)
             command_file = command_file.replace(str(last_run_time),
                  f"{datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S.%f')}")
-    with open('home/ubuntu/db_executor/commands.txt', 'w') as new_file:
+    with open('commands.txt', 'w') as new_file:
         new_file.write(command_file)
