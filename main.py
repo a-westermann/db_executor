@@ -3,6 +3,7 @@ import psycopg2
 import json
 import sys, os
 sys.path.insert(0, os.path.abspath('.'))
+print(sys.path)
 
 
 def execute(command: str):
