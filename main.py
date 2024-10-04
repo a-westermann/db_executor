@@ -22,9 +22,8 @@ if __name__ == '__main__':
         last_run_time, interval_s, sql = line.split('\t')
         elapsed = datetime.now() - datetime.fromisoformat(last_run_time)
         if elapsed.total_seconds() > float(interval_s):
-            executed = execute(sql)
-            if executed:
-                command_file = command_file.replace(str(last_run_time),
-                     f"{datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S.%f')}")
+            execute(sql)
+            command_file = command_file.replace(str(last_run_time),
+                 f"{datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S.%f')}")
     with open('commands.txt', 'w') as new_file:
         new_file.write(command_file)
