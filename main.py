@@ -5,7 +5,7 @@ import json
 
 def execute(command: str):
     print(f'executing: {command}')
-    db_info = json.load(open('home/ubuntu/db_executor/db.json'))
+    db_info = json.load(open('root/home/ubuntu/db_executor/db.json'))
     conn = psycopg2.connect(database=db_info['database'], user=db_info['user'],
             password=db_info['password'], host=db_info['host'], port=db_info['port'])
     cursor = conn.cursor()
@@ -17,7 +17,7 @@ def execute(command: str):
 
 if __name__ == '__main__':
     # read the file, see if any commands need to execute
-    command_file = open('home/ubuntu/db_executor/commands.txt').read()
+    command_file = open('root/home/ubuntu/db_executor/commands.txt').read()
     for line in command_file.split('\n')[1:]:
         last_run_time, interval_s, sql = line.split('\t')
         elapsed = datetime.now() - datetime.fromisoformat(last_run_time)
