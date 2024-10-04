@@ -4,7 +4,7 @@ import json
 
 
 def execute(command: str):
-    print(f'executing: {command}')
+    print(f'{datetime.now()} :  executing: {command}')
     db_info = json.load(open('db.json'))
     conn = psycopg2.connect(database=db_info['database'], user=db_info['user'],
             password=db_info['password'], host=db_info['host'], port=db_info['port'])
