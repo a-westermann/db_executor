@@ -5,14 +5,14 @@ import json
 
 def execute(command: str) -> bool:
     db_info = json.load(open('db.json'))
-    with psycopg2.connect(database=db_info['database'], user=db_info['user'],
-            password=db_info['password'], host=db_info['host'], port=db_info['port']) as conn:
-        cursor = conn.cursor()
-        cursor.execute(command)
-        conn.commit()
-        rowcount = cursor.rowcount > 0
-        conn.close()
-        return rowcount
+    conn = psycopg2.connect(database=db_info['database'], user=db_info['user'],
+            password=db_info['password'], host=db_info['host'], port=db_info['port'])
+    cursor = conn.cursor()
+    cursor.execute(command)
+    conn.commit()
+    rowcount = cursor.rowcount > 0
+    conn.close()
+    return rowcount
 
 def log_error(error_sql: str):
     with open('logfile', 'a') as logfile:
