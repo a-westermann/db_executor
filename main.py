@@ -3,16 +3,16 @@ import psycopg2
 import json
 
 
-def execute(command: str) -> bool:
+def execute(command: str):
+    print(f'executing: {command}')
     db_info = json.load(open('db.json'))
     conn = psycopg2.connect(database=db_info['database'], user=db_info['user'],
             password=db_info['password'], host=db_info['host'], port=db_info['port'])
     cursor = conn.cursor()
     cursor.execute(command)
     conn.commit()
-    rowcount = cursor.rowcount > 0
+    print(f'Found {cursor.rowcount} records to update/delete')
     conn.close()
-    return rowcount
 
 
 if __name__ == '__main__':
