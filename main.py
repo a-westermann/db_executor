@@ -18,8 +18,7 @@ def execute(command: str):
 if __name__ == '__main__':
     # read the file, see if any commands need to execute
     command_file = open('commands.txt').read()
-    for line in command_file.split('\n')[1:]:
-        print(line)
+    for line in command_file.split('\n')[1:-1]:
         last_run_time, interval_s, sql = line.split('\t')
         elapsed = datetime.now() - datetime.fromisoformat(last_run_time)
         if elapsed.total_seconds() > float(interval_s):
