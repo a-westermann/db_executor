@@ -14,10 +14,6 @@ def execute(command: str) -> bool:
     conn.close()
     return rowcount
 
-def log_error(error_sql: str):
-    with open('logfile', 'a') as logfile:
-        logfile.write(f'\nError at {datetime.now()}:  {error_sql}')
-
 
 if __name__ == '__main__':
     # read the file, see if any commands need to execute
@@ -30,7 +26,5 @@ if __name__ == '__main__':
             if executed:
                 command_file = command_file.replace(str(last_run_time),
                      f"{datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S.%f')}")
-            else:
-                log_error(sql)
     with open('commands.txt', 'w') as new_file:
         new_file.write(command_file)
