@@ -1,0 +1,2 @@
+last_run_time   interval_s    sql
+2024-10-04 10:53:31.805923	300	select 1;
