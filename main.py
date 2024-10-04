@@ -10,8 +10,9 @@ def execute(command: str) -> bool:
         cursor = conn.cursor()
         cursor.execute(command)
         conn.commit()
+        rowcount = cursor.rowcount > 0
         conn.close()
-        return cursor.rowcount > 0
+        return rowcount
 
 def log_error(error_sql: str):
     with open('logfile', 'a') as logfile:
